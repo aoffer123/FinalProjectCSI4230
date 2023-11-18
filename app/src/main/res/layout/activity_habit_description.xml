@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="#E9EEF0">
+
+    <FrameLayout
+        android:id="@+id/dateFrame"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border"
+        android:padding="5dp"
+        android:layout_gravity="center"
+        >
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="November 13th, 2023"
+            android:textAlignment="center"
+            style="@style/myBlackHeaderStyle"
+            android:background="#BBDEFB"/>
+
+        <CheckBox
+            android:id="@+id/habitCompletedCB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Habit Completed"
+            android:layout_gravity="center"
+            style="@style/myBlackStyle"
+            android:layout_marginTop="20dp"
+            android:theme="@style/myCBStyle"
+            />
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/habitDetailsFrame"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border"
+        android:padding="5dp"
+        android:layout_gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            style="@style/myGreyStyle"
+            android:text="@string/habitDetails"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/mindful"
+            android:layout_marginLeft="300dp"/>
+        <TextView
+            android:id="@+id/habitDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Read 10 pages of a book every night before bed."
+            android:paddingTop="40dp"
+            style="@style/myBlackStyle"/>
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/shortGoalsFrame"
+        android:layout_width="350dp"
+        android:layout_height="210dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border"
+        android:padding="5dp"
+        android:layout_gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/goals"
+            style="@style/myGreyStyle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Short-Term"
+            android:paddingTop="30dp"
+            style="@style/myBlueStyle"/>
+        <TextView
+            android:id="@+id/shortGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Complete this habit 5 days in a row."
+            android:paddingTop="60dp"
+            style="@style/myBlackStyle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reward"
+            android:paddingTop="100dp"
+            style="@style/myBlueStyle"/>
+        <TextView
+            android:id="@+id/shortReward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buy new book I have been wanting."
+            android:paddingTop="130dp"
+            style="@style/myBlackStyle"/>
+        <TextView
+            android:id="@+id/shortProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Progress:     5/5 days"
+            android:textAlignment="center"
+            style="@style/myBlackHeaderStyle"
+            android:layout_marginTop="165dp"
+            android:background="#A5D6A7"/>
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/longGoalsFrame"
+        android:layout_width="350dp"
+        android:layout_height="210dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border"
+        android:padding="5dp"
+        android:layout_gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/goals"
+            style="@style/myGreyStyle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Long-Term"
+            android:paddingTop="30dp"
+            style="@style/myBlueStyle"/>
+        <TextView
+            android:id="@+id/longGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Complete this habit 60 days in a row."
+            android:paddingTop="60dp"
+            style="@style/myBlackStyle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reward"
+            android:paddingTop="100dp"
+            style="@style/myBlueStyle"/>
+        <TextView
+            android:id="@+id/longReward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Go to favorite nice restaurant."
+            android:paddingTop="130dp"
+            style="@style/myBlackStyle"/>
+        <TextView
+            android:id="@+id/longProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Progress:     5/60 days"
+            android:textAlignment="center"
+            style="@style/myBlackHeaderStyle"
+            android:layout_marginTop="165dp"
+            android:background="#A5D6A7"/>
+
+    </FrameLayout>
+
+</LinearLayout>

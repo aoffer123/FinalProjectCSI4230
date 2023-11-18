@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<style name="myGreyStyle" parent="Theme.AppCompat.Light">
+    <item name="android:textSize">20sp</item>
+    <item name="android:textColor">#9E9E9E</item>
+    <item name="android:textStyle">bold</item>
+</style>
+<style name="myBlackHeaderStyle" parent="Theme.AppCompat.Light">
+    <item name="android:textSize">24sp</item>
+    <item name="android:textColor">#000000</item>
+    <item name="android:textStyle">bold</item>
+</style>
+<style name="myBlueStyle" parent="Theme.AppCompat.Light">
+    <item name="android:textSize">20sp</item>
+    <item name="android:textColor">#1565C0</item>
+</style>
+<style name="myBlackStyle" parent="Theme.AppCompat.Light">
+    <item name="android:textSize">20sp</item>
+    <item name="android:textColor">#000000</item>
+</style>
+<style name="myCBStyle" parent="Theme.AppCompat.Light">
+    <item name="colorAccent">#1565C0</item>
+    <item name="android:textColorSecondary">#1565C0</item>
+</style>
+</resources>

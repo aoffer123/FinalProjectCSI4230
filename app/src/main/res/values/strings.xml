@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">LayoutExample</string>
+
+    <string name="habitDetails"><u>Habit Details</u></string>
+    <string name="goals"><u>Goals</u></string>
 </resources>
