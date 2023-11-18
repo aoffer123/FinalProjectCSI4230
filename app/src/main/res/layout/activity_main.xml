@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#053057"
+        android:layout_marginLeft="20dp"
+        android:text="Create A Habit"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:textSize="23sp"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="12"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:id="@+id/habitName"
+        android:hint="Habit Name"
+        android:inputType="text" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/habitDesc"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:ems="12"
+        android:textSize="20sp"
+        android:hint="Habit Description"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:textColor="#053057"
+        android:textStyle="bold"
+        android:text="Pick a Category"
+        android:textSize="23sp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+
+        android:layout_gravity="center">
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/financial"
+            android:padding="10dp"
+            android:id="@+id/financialBtn"
+            android:layout_margin="10dp"
+            android:background="@drawable/circle_background"
+
+            android:layout_weight="1"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/energy"
+            android:id="@+id/energyBtn"
+            android:padding="10dp"
+            android:layout_weight="2"
+            android:layout_margin="10dp"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/creativity"
+            android:id="@+id/creativityBtn"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mindful"
+            android:id="@+id/mindfulBtn"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/health"
+            android:id="@+id/healthBtn"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/productivity"
+            android:id="@+id/productivityBtn"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/label"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="#053057"
+        android:textStyle="bold"
+        android:text="Add Goals"
+        android:textSize="23sp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="#053057"
+        android:textStyle="normal"
+        android:layout_height="wrap_content"
+        android:id="@+id/labelGoals"
+        android:layout_marginLeft="20dp"
+        android:padding="2dp"
+        android:background="#F2F2F2"
+        android:text="Short Term"
+        android:textSize="21sp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/labelDay"
+            android:text="Enter Number of Days:"
+            android:textSize="20sp"
+            />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/shortGoal"
+            android:ems="3"
+            android:textSize="20sp"
+            android:inputType="text" />
+
+    </LinearLayout>
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/shortReward"
+        android:layout_marginLeft="20dp"
+
+        android:ems="14"
+        android:textSize="20sp"
+        android:hint="Enter your reward"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/labelGoal"
+        android:background="#F2F2F2"
+        android:padding="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="20dp"
+        android:text="Long Term"
+        android:textColor="#053057"
+        android:textStyle="normal"
+        android:textSize="21sp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/labelDays"
+            android:text="Enter Number of Days:"
+            android:textSize="20sp"
+            />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/longGoal"
+        android:ems="3"
+        android:textSize="20sp"
+        android:inputType="text" />
+
+    </LinearLayout>
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/longReward"
+        android:ems="14"
+        android:layout_marginLeft="20dp"
+        android:textSize="20sp"
+        android:hint="Enter your reward"
+        android:inputType="text" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:text="Create"
+        android:layout_gravity="right"
+        android:layout_marginTop="3dp"
+        android:backgroundTint="#053057"
+        android:textSize="18sp"/>
+
+</LinearLayout>
