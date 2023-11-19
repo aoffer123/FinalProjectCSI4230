@@ -6,16 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="#E9EEF0">
+    android:background="#EEF2F8">
 
     <FrameLayout
         android:id="@+id/dateFrame"
         android:layout_width="350dp"
         android:layout_height="100dp"
+        android:elevation="8dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/border"
         android:padding="5dp"
         android:layout_gravity="center"
+
         >
         <TextView
             android:id="@+id/date"
@@ -40,8 +42,9 @@
     <FrameLayout
         android:id="@+id/habitDetailsFrame"
         android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="120dp"
+        android:elevation="8dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/border"
         android:padding="5dp"
         android:layout_gravity="center">
@@ -49,11 +52,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="5dp"
+            android:paddingTop="3dp"
             style="@style/myGreyStyle"
             android:text="@string/habitDetails"/>
+        <View
+            android:layout_width="350dp"
+            android:layout_height="2dp"
+            android:background="#82CCD5E1"
+            android:layout_marginTop="35dp"
+            />
         <ImageView
             android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:src="@drawable/mindful"
             android:layout_marginLeft="300dp"/>
         <TextView
@@ -61,47 +71,56 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Read 10 pages of a book every night before bed."
-            android:paddingTop="40dp"
+            android:paddingTop="45dp"
             style="@style/myBlackStyle"/>
     </FrameLayout>
     <FrameLayout
         android:id="@+id/shortGoalsFrame"
         android:layout_width="350dp"
-        android:layout_height="210dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:elevation="8dp"
         android:background="@drawable/border"
         android:padding="5dp"
         android:layout_gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:paddingBottom="5dp"
             android:text="@string/goals"
             style="@style/myGreyStyle"/>
+        <View
+            android:layout_width="350dp"
+            android:layout_height="2dp"
+            android:background="#82CCD5E1"
+            android:layout_marginTop="31dp"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Short-Term"
-            android:paddingTop="30dp"
+            android:paddingTop="35dp"
             style="@style/myBlueStyle"/>
         <TextView
             android:id="@+id/shortGoal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Complete this habit 5 days in a row."
-            android:paddingTop="60dp"
+            android:paddingTop="64dp"
             style="@style/myBlackStyle"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reward"
-            android:paddingTop="100dp"
+            android:paddingTop="93dp"
             style="@style/myBlueStyle"/>
         <TextView
             android:id="@+id/shortReward"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Buy new book I have been wanting."
-            android:paddingTop="130dp"
+            android:paddingTop="122dp"
             style="@style/myBlackStyle"/>
         <TextView
             android:id="@+id/shortProgress"
@@ -110,47 +129,56 @@
             android:text="Progress:     5/5 days"
             android:textAlignment="center"
             style="@style/myBlackHeaderStyle"
-            android:layout_marginTop="165dp"
-            android:background="#A5D6A7"/>
+            android:layout_marginTop="155dp"
+            android:background="#A190E074"/>
     </FrameLayout>
     <FrameLayout
         android:id="@+id/longGoalsFrame"
         android:layout_width="350dp"
-        android:layout_height="210dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/border"
+        android:elevation="8dp"
         android:padding="5dp"
         android:layout_gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:paddingBottom="5dp"
             android:text="@string/goals"
             style="@style/myGreyStyle"/>
+        <View
+            android:layout_width="350dp"
+            android:layout_height="2dp"
+            android:background="#82CCD5E1"
+            android:layout_marginTop="31dp"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Long-Term"
-            android:paddingTop="30dp"
+            android:paddingTop="35dp"
             style="@style/myBlueStyle"/>
         <TextView
             android:id="@+id/longGoal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Complete this habit 60 days in a row."
-            android:paddingTop="60dp"
+            android:paddingTop="64dp"
             style="@style/myBlackStyle"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reward"
-            android:paddingTop="100dp"
+            android:paddingTop="93dp"
             style="@style/myBlueStyle"/>
         <TextView
             android:id="@+id/longReward"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Go to favorite nice restaurant."
-            android:paddingTop="130dp"
+            android:paddingTop="122dp"
             style="@style/myBlackStyle"/>
         <TextView
             android:id="@+id/longProgress"
@@ -159,8 +187,8 @@
             android:text="Progress:     5/60 days"
             android:textAlignment="center"
             style="@style/myBlackHeaderStyle"
-            android:layout_marginTop="165dp"
-            android:background="#A5D6A7"/>
+            android:layout_marginTop="155dp"
+            android:background="#A190E074"/>
 
     </FrameLayout>
 

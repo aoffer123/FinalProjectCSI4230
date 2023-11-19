@@ -56,25 +56,26 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
 
         android:layout_gravity="center">
 
         <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@drawable/financial"
-            android:padding="10dp"
+            android:background="@drawable/circleoff_background"
+            android:padding="5dp"
             android:id="@+id/financialBtn"
             android:layout_margin="10dp"
-            android:background="@drawable/circle_background"
-
             android:layout_weight="1"
             />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/energy"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/energy"
+            android:background="@drawable/circleoff_background"
             android:id="@+id/energyBtn"
             android:padding="10dp"
             android:layout_weight="2"
@@ -82,36 +83,40 @@
             />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/creativity"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/creativity"
+            android:background="@drawable/circleoff_background"
             android:id="@+id/creativityBtn"
             android:padding="10dp"
             android:layout_margin="10dp"
             />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/mindful"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/mindful"
+            android:background="@drawable/circleoff_background"
             android:id="@+id/mindfulBtn"
             android:padding="10dp"
             android:layout_margin="10dp"
             />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/health"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/health"
+            android:background="@drawable/circleoff_background"
             android:id="@+id/healthBtn"
             android:padding="10dp"
             android:layout_margin="10dp"
             />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/productivity"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/productivity"
+            android:background="@drawable/circleoff_background"
             android:id="@+id/productivityBtn"
             android:padding="10dp"
             android:layout_margin="10dp"
@@ -121,7 +126,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/label"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:textSize="15sp"
+        android:id="@+id/chosenCat"
+         />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:textColor="#053057"
@@ -136,7 +151,7 @@
         android:textColor="#053057"
         android:textStyle="normal"
         android:layout_height="wrap_content"
-        android:id="@+id/labelGoals"
+
         android:layout_marginLeft="20dp"
         android:padding="2dp"
         android:background="#F2F2F2"
@@ -160,7 +175,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/shortGoal"
+            android:id="@+id/shortGoalInput"
             android:ems="3"
             android:textSize="20sp"
             android:inputType="text" />
@@ -171,7 +186,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/shortReward"
+        android:id="@+id/shortRewardInput"
         android:layout_marginLeft="20dp"
 
         android:ems="14"
@@ -210,7 +225,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/longGoal"
+        android:id="@+id/longGoalInput"
         android:ems="3"
         android:textSize="20sp"
         android:inputType="text" />
@@ -221,7 +236,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/longReward"
+        android:id="@+id/longRewardInput"
         android:ems="14"
         android:layout_marginLeft="20dp"
         android:textSize="20sp"
@@ -236,6 +251,7 @@
         android:layout_gravity="right"
         android:layout_marginTop="3dp"
         android:backgroundTint="#053057"
+        android:id="@+id/createHabit"
         android:textSize="18sp"/>
 
 </LinearLayout>
