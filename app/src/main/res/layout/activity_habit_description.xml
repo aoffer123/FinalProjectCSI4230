@@ -6,24 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="#EEF2F8">
+    android:background="#EEF2F8"
+    android:id="@+id/linLay1">
 
     <FrameLayout
         android:id="@+id/dateFrame"
         android:layout_width="350dp"
         android:layout_height="100dp"
         android:elevation="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/border"
         android:padding="5dp"
-        android:layout_gravity="center"
-
-        >
+        android:layout_gravity="center">
         <TextView
             android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="November 13th, 2023"
+            android:text="MMM-dd-yyyy"
             android:textAlignment="center"
             style="@style/myBlackHeaderStyle"
             android:background="#BBDEFB"/>
@@ -36,8 +35,7 @@
             android:layout_gravity="center"
             style="@style/myBlackStyle"
             android:layout_marginTop="20dp"
-            android:theme="@style/myCBStyle"
-            />
+            android:theme="@style/myCBStyle"/>
     </FrameLayout>
     <FrameLayout
         android:id="@+id/habitDetailsFrame"
@@ -59,9 +57,9 @@
             android:layout_width="350dp"
             android:layout_height="2dp"
             android:background="#82CCD5E1"
-            android:layout_marginTop="35dp"
-            />
+            android:layout_marginTop="35dp"/>
         <ImageView
+            android:id = "@+id/catPhoto"
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:src="@drawable/mindful"
@@ -94,8 +92,7 @@
             android:layout_width="350dp"
             android:layout_height="2dp"
             android:background="#82CCD5E1"
-            android:layout_marginTop="31dp"
-            />
+            android:layout_marginTop="31dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -152,8 +149,7 @@
             android:layout_width="350dp"
             android:layout_height="2dp"
             android:background="#82CCD5E1"
-            android:layout_marginTop="31dp"
-            />
+            android:layout_marginTop="31dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

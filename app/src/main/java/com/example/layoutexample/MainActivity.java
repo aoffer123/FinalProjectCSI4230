@@ -14,32 +14,16 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener{
     Intent goToHabitDetails;
-    EditText habitName;
-    EditText habitDesc;
-    String habitDescStr;
+    EditText habitName, habitDesc, shortGoalInput, shortRewardInput,
+            longGoalInput, longRewardInput;
+    String habitDescStr, habitCat, shortGoalStr, shortRewardStr, habitNameStr,
+            longGoalStr, longRewardStr;
 
-    String habitCat;
-
-    ImageButton financialBtn;
-    ImageButton energyBtn;
-    ImageButton creativityBtn;
-    ImageButton mindfulBtn;
-    ImageButton healthBtn;
-    ImageButton productivityBtn;
-    EditText shortGoalInput;
-    String shortGoalStr;
-    EditText shortRewardInput;
-    String shortRewardStr;
-    String habitNameStr;
-
-    EditText longGoalInput;
-    String longGoalStr;
-    EditText longRewardInput;
-    String longRewardStr;
+    ImageButton financialBtn, energyBtn, creativityBtn, mindfulBtn, healthBtn,
+            productivityBtn;
     TextView chosenCat;
-
     Button createHabit;
-    int flagOn = 1;
+    int flagOn = 1, photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,22 +81,29 @@ public class MainActivity extends AppCompatActivity
         if (v.getId() == R.id.financialBtn) {
             financialBtn.setBackgroundResource(R.drawable.circle_background);
             chosenCat.setText("Category Chosen: Financial");
+            photo = R.drawable.financial;
         } else if (v.getId() == R.id.creativityBtn) {
             creativityBtn.setBackgroundResource(R.drawable.circle_creative);
             chosenCat.setText("Category Chosen: Creativity");
+            photo = R.drawable.creativity;
         } else if (v.getId() == R.id.healthBtn) {
             healthBtn.setBackgroundResource(R.drawable.circle_health);
             chosenCat.setText("Category Chosen: Health");
+            photo = R.drawable.health;
         } else if (v.getId() == R.id.mindfulBtn) {
             mindfulBtn.setBackgroundResource(R.drawable.circle_mindful);
             chosenCat.setText("Category Chosen: Mindful");
+            photo = R.drawable.mindful;
         } else if (v.getId() == R.id.energyBtn) {
             energyBtn.setBackgroundResource(R.drawable.circle_energy);
             chosenCat.setText("Category Chosen: Energy");
+            photo = R.drawable.energy;
         } else if (v.getId() == R.id.productivityBtn) {
             productivityBtn.setBackgroundResource(R.drawable.circle_productivity);
             chosenCat.setText("Category Chosen: Productivity");
+            photo = R.drawable.productivity;
         }
+        goToHabitDetails.putExtra("catPhoto", photo);
     }
 
 

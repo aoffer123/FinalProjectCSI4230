@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="#053057"
+        android:textStyle="bold"
+        android:text="Add New Goal"
+        android:textSize="23sp"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newGoalInput"
+        android:layout_marginLeft="20dp"
+        android:ems="14"
+        android:textSize="20sp"
+        android:hint="Enter your goal"
+        android:inputType="text" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newRewardInput"
+        android:layout_marginLeft="20dp"
+        android:ems="14"
+        android:textSize="20sp"
+        android:hint="Enter your reward"
+        android:inputType="text" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:text="Create"
+        android:layout_gravity="right"
+        android:layout_marginTop="3dp"
+        android:backgroundTint="#4c739d"
+        android:id="@+id/createHabit"
+        android:textSize="18sp"/>
+
+</LinearLayout>
