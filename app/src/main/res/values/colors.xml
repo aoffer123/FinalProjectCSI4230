@@ -2,4 +2,20 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background">#EEEEEE</color>
+    <color name="progressColor">#00FF00</color>
+
+    <color name="mindfulness">#E8EEF5</color>
+    <color name="financial">#DEF8E4</color>
+    <color name="health">#FAF0D4</color>
+    <color name="energy">#F4F4C9</color>
+    <color name="creativity">#FEE8F5</color>
+    <color name="productivity">#EEE2FA</color>
+
+    <color name="dark_mindfulness">#DAE0EB</color>
+    <color name="dark_financial">#CAE9CC</color>
+    <color name="dark_health">#F1E5CE</color>
+    <color name="dark_energy">#EBEABB</color>
+    <color name="dark_creativity">#F7D2E3</color>
+    <color name="dark_productivity">#E7CEF3</color>
 </resources>

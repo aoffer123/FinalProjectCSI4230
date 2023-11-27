@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<style name="myGreyStyle" parent="Theme.AppCompat.Light">
-    <item name="android:textSize">20sp</item>
-    <item name="android:textColor">#F5AFAFAF</item>
-    <item name="android:textStyle">normal</item>
-</style>
-<style name="myBlackHeaderStyle" parent="Theme.AppCompat.Light">
-    <item name="android:textSize">22sp</item>
-    <item name="android:textColor">#000000</item>
-    <item name="android:textStyle">normal</item>
-</style>
-<style name="myGreenHeaderStyle" parent="Theme.AppCompat.Light">
-    <item name="android:textSize">22sp</item>
-    <item name="android:textColor">#09af00</item>
-    <item name="android:textStyle">normal</item>
-</style>
-<style name="myBlueStyle" parent="Theme.AppCompat.Light">
-    <item name="android:textSize">20sp</item>
-    <item name="android:textColor">#1565C0</item>
-</style>
-<style name="myBlackStyle" parent="Theme.AppCompat.Light">
-    <item name="android:textSize">20sp</item>
-    <item name="android:textColor">#000000</item>
-</style>
-<style name="myCBStyle" parent="Theme.AppCompat.Light">
-    <item name="colorAccent">#1565C0</item>
-    <item name="android:textColorSecondary">#1565C0</item>
-</style>
+    <style name="myGreyStyle" parent="Theme.AppCompat.Light">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#F5AFAFAF</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    <style name="myBlackHeaderStyle" parent="Theme.AppCompat.Light">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    <style name="myGreenHeaderStyle" parent="Theme.AppCompat.Light">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">#09af00</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    <style name="myBlueStyle" parent="Theme.AppCompat.Light">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#1565C0</item>
+    </style>
+    <style name="myBlackStyle" parent="Theme.AppCompat.Light">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+    <style name="myCBStyle" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">#1565C0</item>
+        <item name="android:textColorSecondary">#1565C0</item>
+    </style>
+    <style name="headerText" parent="Theme.AppCompat.Light">
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="numberText" parent="headerText">
+        <item name="android:textColor">#3771A4</item>
+    </style>
 </resources>

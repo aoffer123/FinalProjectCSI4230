@@ -19,6 +19,9 @@
             android:name=".Habit_Description"
             android:exported="false" />
         <activity
+            android:name=".Add_Habit"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

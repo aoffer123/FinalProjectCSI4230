@@ -62,7 +62,7 @@
             android:id = "@+id/catPhoto"
             android:layout_width="40dp"
             android:layout_height="30dp"
-            android:src="@drawable/mindful"
+            android:src="@drawable/mindfulness"
             android:layout_marginLeft="300dp"/>
         <TextView
             android:id="@+id/habitDetails"
