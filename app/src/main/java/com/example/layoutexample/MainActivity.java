@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     ProgressBar myProgressBar;
     int completedHabitsInt = 2;
-    int totalHabitsInt = 5;
+    int totalHabitsInt = 6;
     TextView completedHabits, totalHabits;
     LinearLayout habitSpace;
     Intent goToHabitDetails;

@@ -26,10 +26,8 @@ public class Habit_Description extends AppCompatActivity {
     int indexShort=0, indexLong=0;
     ImageView catPhoto;
     CheckBox habitCB;
-    Intent createdHabit, changeGoal;
-    Button btn, setGoalBtn;
+    Intent createdHabit, goalComplete;
     LinearLayout linLay1;
-    PopupWindow popupWin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +43,6 @@ public class Habit_Description extends AppCompatActivity {
         date = findViewById(R.id.date);
         catPhoto = findViewById(R.id.catPhoto);
         habitCB = findViewById(R.id.habitCompletedCB);
-//        btn = findViewById(R.id.popUp);
         linLay1 = findViewById(R.id.linLay1);
 
         // get current date
@@ -53,28 +50,6 @@ public class Habit_Description extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("MMM-dd-yyyy", Locale.getDefault());
         String formattedDate = df.format(c);
         date.setText(formattedDate);
-
-        //popup window
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                LayoutInflater layoutInf = (LayoutInflater) Habit_Description.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                View newView = layoutInf.inflate(R.layout.popup, null);
-//
-//                setGoalBtn = (Button) newView.findViewById(R.id.setNewGoal);
-//
-//                popupWin = new PopupWindow(newView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//
-//                popupWin.showAtLocation(linLay1, Gravity.CENTER, 0, 0);
-//
-//                setGoalBtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        popupWin.dismiss();
-//                    }
-//                });
-//            }
-//        });
 
 
         //setting intent
@@ -95,7 +70,7 @@ public class Habit_Description extends AppCompatActivity {
         longProgress.setText("Progress: " + indexLong + "/" + numberOfDaysLong);
         int photo = createdHabit.getIntExtra("catPhoto", R.drawable.financial);
         catPhoto.setImageResource(photo);
-        changeGoal = new Intent(this, Habit_Description.class);
+        goalComplete = new Intent(this, GoalComplete.class);
 
         habitCB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,19 +87,12 @@ public class Habit_Description extends AppCompatActivity {
                 longProgress.setText("Progress: " + indexLong + "/" + numberOfDaysLong);
 
                 if(indexLong == numberOfDaysLong){
-                    LayoutInflater layoutInf = (LayoutInflater) Habit_Description.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    View newView = layoutInf.inflate(R.layout.popup, null);
-                    setGoalBtn = (Button) newView.findViewById(R.id.setNewGoal);
-                    popupWin = new PopupWindow(newView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                    popupWin.showAtLocation(linLay1, Gravity.CENTER, 0, 0);
-                    setGoalBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            popupWin.dismiss();
-
-//                            Habit_Description.this.startActivity(changeGoal);
-                        }
-                    });
+                    goalComplete.putExtra("goalType", "Long-term goal");
+                    Habit_Description.this.startActivity(goalComplete);
+                }
+                else if(indexShort == numberOfDays){
+                    goalComplete.putExtra("goalType", "Short-term goal");
+                    Habit_Description.this.startActivity(goalComplete);
                 }
             }
         });
