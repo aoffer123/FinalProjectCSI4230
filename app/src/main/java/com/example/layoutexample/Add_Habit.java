@@ -65,10 +65,10 @@ public class Add_Habit extends AppCompatActivity
 
                 goToHabitDetails.putExtra("habitName", habitNameStr);
                 goToHabitDetails.putExtra("habitDesc", habitDescStr);
-                goToHabitDetails.putExtra("shortGoalInput", shortGoalInt);
-                goToHabitDetails.putExtra("shortRewardInput", shortRewardStr);
-                goToHabitDetails.putExtra("longGoalInput", longGoalInt);
-                goToHabitDetails.putExtra("longRewardInput", longRewardStr);
+                goToHabitDetails.putExtra("STDays", shortGoalInt);
+                goToHabitDetails.putExtra("STReward", shortRewardStr);
+                goToHabitDetails.putExtra("LTDays", longGoalInt);
+                goToHabitDetails.putExtra("LTReward", longRewardStr);
                 Add_Habit.this.startActivity(goToHabitDetails);
             }
         });

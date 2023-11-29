@@ -21,7 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private Context myContext;
 
     public DBHelper(Context context) {
-        super(context, DB_NAME, null, 1);
+        super(context, DB_NAME, null, 2);
         this.myContext = context;
         this.DB_PATH = this.myContext.getDatabasePath(DB_NAME).getAbsolutePath();
     }

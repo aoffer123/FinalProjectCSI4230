@@ -7,6 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/goalType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -24,7 +25,7 @@
         android:layout_marginLeft="20dp"
         android:ems="14"
         android:textSize="20sp"
-        android:hint="Enter your goal"
+        android:hint="Enter number of days"
         android:inputType="text" />
 
     <EditText
@@ -45,7 +46,7 @@
         android:layout_gravity="right"
         android:layout_marginTop="3dp"
         android:backgroundTint="#4c739d"
-        android:id="@+id/createHabit"
+        android:id="@+id/createGoal"
         android:textSize="18sp"/>
 
 </LinearLayout>

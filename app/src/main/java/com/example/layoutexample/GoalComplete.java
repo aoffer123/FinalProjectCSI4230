@@ -27,7 +27,7 @@ public class GoalComplete extends AppCompatActivity {
         setNewGoal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                changeGoal.putExtra("goalType", goalStr);
                 GoalComplete.this.startActivity(changeGoal);
             }
         });
