@@ -28,6 +28,7 @@ public class Habit_Description extends AppCompatActivity {
     CheckBox habitCB;
     Intent createdHabit, goalComplete;
     LinearLayout linLay1;
+    //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
