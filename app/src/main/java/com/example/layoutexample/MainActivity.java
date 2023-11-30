@@ -21,7 +21,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar myProgressBar;
     int completedHabitsInt = 3;
     int totalHabitsInt = 0;
-    TextView completedHabits, totalHabits;
+    TextView completedHabits, totalHabits, date;
     LinearLayout todoSpace, completedSpace;
     Intent goToHabitDetails;
     private static SQLiteDatabase db;
@@ -101,6 +105,17 @@ public class MainActivity extends AppCompatActivity {
         myProgressBar.setProgress(completedHabitsInt);
         completedHabits.setText(Integer.toString(completedHabitsInt));
         totalHabits.setText(Integer.toString(totalHabitsInt));
+
+        date = findViewById(R.id.date);
+
+        // get current date
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("MMM-dd-yyyy", Locale.getDefault());
+        String formattedDate = df.format(c);
+        date.setText(formattedDate);
+
+        createDB();
+        getResult("select * from habit");
 
         for (HabitItem habit: habitList) {
             LinearLayout habitLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.habit, todoSpace, false);
@@ -199,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void getResult(String query) {
         Cursor cursor = db.rawQuery(query, null);
+        //Cursor cursor2 = db.rawQuery(query, null);
         cursor.moveToFirst();
 
         habitList = new ArrayList<>();

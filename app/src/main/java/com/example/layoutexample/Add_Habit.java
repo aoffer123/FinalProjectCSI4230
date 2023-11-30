@@ -3,6 +3,7 @@ package com.example.layoutexample;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,10 +20,12 @@ public class Add_Habit extends AppCompatActivity
     int shortGoalInt, longGoalInt;
 
     ImageButton financialBtn, energyBtn, creativityBtn, mindfulBtn, healthBtn,
-            productivityBtn;
+            productivityBtn, home;
     TextView chosenCat;
     Button createHabit;
     int flagOn = 1, photo;
+    SQLiteDatabase db;
+    String insertQuery = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class Add_Habit extends AppCompatActivity
         mindfulBtn = findViewById(R.id.mindfulBtn);
         healthBtn = findViewById(R.id.healthBtn);
         productivityBtn = findViewById(R.id.productivityBtn);
+        home = findViewById(R.id.home);
         shortGoalInput = findViewById(R.id.shortGoalInput);
         shortRewardInput = findViewById(R.id.shortRewardInput);
         longGoalInput = findViewById(R.id.longGoalInput);
@@ -43,6 +47,10 @@ public class Add_Habit extends AppCompatActivity
         chosenCat = findViewById(R.id.chosenCat);
         createHabit = findViewById(R.id.createHabit);
         goToHabitDetails = new Intent(this, Habit_Description.class);
+
+        //db = MainActivity.db;
+
+
 
         energyBtn.setOnClickListener(this);
         healthBtn.setOnClickListener(this);
@@ -65,11 +73,19 @@ public class Add_Habit extends AppCompatActivity
 
                 goToHabitDetails.putExtra("habitName", habitNameStr);
                 goToHabitDetails.putExtra("habitDesc", habitDescStr);
-                goToHabitDetails.putExtra("shortGoalInput", shortGoalInt);
-                goToHabitDetails.putExtra("shortRewardInput", shortRewardStr);
-                goToHabitDetails.putExtra("longGoalInput", longGoalInt);
-                goToHabitDetails.putExtra("longRewardInput", longRewardStr);
+                goToHabitDetails.putExtra("STDays", shortGoalInt);
+                goToHabitDetails.putExtra("STReward", shortRewardStr);
+                goToHabitDetails.putExtra("LTDays", longGoalInt);
+                goToHabitDetails.putExtra("LTReward", longRewardStr);
                 Add_Habit.this.startActivity(goToHabitDetails);
+                finish();
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
@@ -115,6 +131,7 @@ public class Add_Habit extends AppCompatActivity
         }
         goToHabitDetails.putExtra("catPhoto", photo);
     }
+
 
 
 

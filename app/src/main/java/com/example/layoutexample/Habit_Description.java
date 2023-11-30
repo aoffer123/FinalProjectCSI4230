@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -19,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Habit_Description extends AppCompatActivity {
     TextView date, habitDetails, shortGoal, shortReward,
@@ -26,9 +29,9 @@ public class Habit_Description extends AppCompatActivity {
     int indexShort=0, indexLong=0;
     ImageView catPhoto;
     CheckBox habitCB;
-    Intent createdHabit, goalComplete;
+    Intent myIntent, goalComplete;
     LinearLayout linLay1;
-    //
+    ImageButton home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class Habit_Description extends AppCompatActivity {
         catPhoto = findViewById(R.id.catPhoto);
         habitCB = findViewById(R.id.habitCompletedCB);
         linLay1 = findViewById(R.id.linLay1);
+        home = findViewById(R.id.home);
 
         // get current date
         Date c = Calendar.getInstance().getTime();
@@ -54,23 +58,40 @@ public class Habit_Description extends AppCompatActivity {
 
 
         //setting intent
-        createdHabit = getIntent();
-        String createdName = createdHabit.getStringExtra("habitName");
-        String createdDesc = createdHabit.getStringExtra("habitDesc");
+        myIntent = getIntent();
+        String createdName = myIntent.getStringExtra("habitName");
+        String createdDesc = myIntent.getStringExtra("habitDesc");
         String finalDetails = createdName + "\n" + createdDesc;
         habitDetails.setText(finalDetails);
-        int numberOfDays = (createdHabit.getIntExtra("shortGoalInput", 0));
+        int numberOfDays = (myIntent.getIntExtra("STDays", 0));
         shortGoal.setText("Complete this habit " + numberOfDays + " days in a row");
-        String createdShortReward = createdHabit.getStringExtra("shortRewardInput");
+        String createdShortReward = myIntent.getStringExtra("STReward");
         shortReward.setText(createdShortReward);
-        int numberOfDaysLong = createdHabit.getIntExtra("longGoalInput", 0);
+        int numberOfDaysLong = myIntent.getIntExtra("LTDays", 0);
         longGoal.setText("Complete this habit " + numberOfDaysLong + " days in a row");
-        String createdLongReward = createdHabit.getStringExtra("longRewardInput");
+        String createdLongReward = myIntent.getStringExtra("LTReward");
         longReward.setText(createdLongReward);
         shortProgress.setText("Progress: " + indexShort + "/" + numberOfDays);
         longProgress.setText("Progress: " + indexLong + "/" + numberOfDaysLong);
-        int photo = createdHabit.getIntExtra("catPhoto", R.drawable.financial);
+        int photo = myIntent.getIntExtra("catPhoto", R.drawable.financial);
         catPhoto.setImageResource(photo);
+
+        String category = myIntent.getStringExtra("category");
+        if (Objects.equals(category, "Mindfulness")){
+            catPhoto.setImageResource(R.drawable.mindfulness);
+        }else if (Objects.equals(category, "Finacial")){
+            catPhoto.setImageResource(R.drawable.financial);
+        }else if (Objects.equals(category, "Health")){
+            catPhoto.setImageResource(R.drawable.health);
+        }else if (Objects.equals(category, "Energy")){
+            catPhoto.setImageResource(R.drawable.energy);
+        }else if (Objects.equals(category, "Creativity")){
+            catPhoto.setImageResource(R.drawable.creativity);
+        }else if (Objects.equals(category, "Productivity")){
+            catPhoto.setImageResource(R.drawable.productivity);
+        }
+
+
         goalComplete = new Intent(this, GoalComplete.class);
 
         habitCB.setOnClickListener(new View.OnClickListener() {
@@ -88,13 +109,22 @@ public class Habit_Description extends AppCompatActivity {
                 longProgress.setText("Progress: " + indexLong + "/" + numberOfDaysLong);
 
                 if(indexLong == numberOfDaysLong){
-                    goalComplete.putExtra("goalType", "Long-term goal");
+                    goalComplete.putExtra("goalType", "Long-Term Goal");
                     Habit_Description.this.startActivity(goalComplete);
+                    finish();
                 }
                 else if(indexShort == numberOfDays){
-                    goalComplete.putExtra("goalType", "Short-term goal");
+                    goalComplete.putExtra("goalType", "Short-Term Goal");
                     Habit_Description.this.startActivity(goalComplete);
+                    finish();
                 }
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 
