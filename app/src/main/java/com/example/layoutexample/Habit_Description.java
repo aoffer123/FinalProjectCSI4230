@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -30,6 +31,7 @@ public class Habit_Description extends AppCompatActivity {
     CheckBox habitCB;
     Intent myIntent, goalComplete;
     LinearLayout linLay1;
+    ImageButton home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class Habit_Description extends AppCompatActivity {
         catPhoto = findViewById(R.id.catPhoto);
         habitCB = findViewById(R.id.habitCompletedCB);
         linLay1 = findViewById(R.id.linLay1);
-
+        home = findViewById(R.id.home);
 
         // get current date
         Date c = Calendar.getInstance().getTime();
@@ -109,11 +111,20 @@ public class Habit_Description extends AppCompatActivity {
                 if(indexLong == numberOfDaysLong){
                     goalComplete.putExtra("goalType", "Long-Term Goal");
                     Habit_Description.this.startActivity(goalComplete);
+                    finish();
                 }
                 else if(indexShort == numberOfDays){
                     goalComplete.putExtra("goalType", "Short-Term Goal");
                     Habit_Description.this.startActivity(goalComplete);
+                    finish();
                 }
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

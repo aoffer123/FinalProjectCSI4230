@@ -9,13 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class changeGoal extends AppCompatActivity {
     TextView goal;
     EditText newReward, newGoal;
     Button createNewGoal;
-    Intent homePage;
+    ImageButton home;
     private static SQLiteDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,7 @@ public class changeGoal extends AppCompatActivity {
         createNewGoal = findViewById(R.id.createGoal);
         newReward = findViewById(R.id.newRewardInput);
         newGoal = findViewById(R.id.newGoalInput);
-        homePage = new Intent(this, MainActivity.class);
+        home = findViewById(R.id.home);
         Intent myIntent = getIntent();
         String goalStr = myIntent.getStringExtra("goalType");
         goal.setText("Add New " + goalStr);
@@ -38,13 +39,20 @@ public class changeGoal extends AppCompatActivity {
                 int goalInt;
                 rewardStr=newReward.getText().toString();
                 goalInt=Integer.valueOf(newGoal.getText().toString());
+
 //                ContentValues newValues = new ContentValues();
 //                newValues.put("STReward", rewardStr);
 //                db.update("habit", newValues, "HabitID=6", null);
 
-                //changeGoal.this.startActivity(homePage);
             }
         });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
 }
