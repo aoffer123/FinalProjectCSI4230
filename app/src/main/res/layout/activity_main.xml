@@ -43,7 +43,7 @@
                 android:layout_width="250dp"
                 android:layout_height="20dp"
                 style="@android:style/Widget.ProgressBar.Horizontal"
-                android:max="5"
+                android:max="6"
                 android:progressDrawable="@drawable/progress_bar"/>
 
             <LinearLayout
@@ -104,12 +104,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:id="@+id/habit_space"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:orientation="vertical">
-
+            <LinearLayout
+                android:id="@+id/todo_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/TodoColor"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/headerText"
+                    android:gravity="center"
+                    android:background="@color/TodoColorHeader"
+                    android:text="To Do"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/completed_space"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/completedColor"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/headerText"
+                    android:gravity="center"
+                    android:background="@color/completedColorHeader"
+                    android:text="Completed"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -72,13 +72,15 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout addHabit;
 
     ProgressBar myProgressBar;
-    int completedHabitsInt = 2;
-    int totalHabitsInt = 6;
+    int completedHabitsInt = 3;
+    int totalHabitsInt = 0;
     TextView completedHabits, totalHabits;
-    LinearLayout habitSpace;
+    LinearLayout todoSpace, completedSpace;
     Intent goToHabitDetails;
     private static SQLiteDatabase db;
     private DBHelper myDBHelper;
+
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,18 +91,19 @@ public class MainActivity extends AppCompatActivity {
         myProgressBar = findViewById(R.id.progress_bar);
         completedHabits = findViewById(R.id.completed_habits);
         totalHabits = findViewById(R.id.total_habits);
-        habitSpace = findViewById(R.id.habit_space);
+        todoSpace = findViewById(R.id.todo_space);
+        completedSpace = findViewById(R.id.completed_space);
         goToHabitDetails = new Intent(this, Habit_Description.class);
+
+        createDB();
+        getResult("select * from habit");
 
         myProgressBar.setProgress(completedHabitsInt);
         completedHabits.setText(Integer.toString(completedHabitsInt));
         totalHabits.setText(Integer.toString(totalHabitsInt));
 
-        createDB();
-        getResult("select * from habit");
-
         for (HabitItem habit: habitList) {
-            LinearLayout habitLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.habit, habitSpace, false);
+            LinearLayout habitLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.habit, todoSpace, false);
             ImageView img = habitLayout.findViewById(R.id.image);
             TextView title = habitLayout.findViewById(R.id.title);
             TextView category = habitLayout.findViewById(R.id.category);
@@ -167,12 +170,22 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            habitSpace.addView(habitLayout);
+            if (count % 2 == 0)
+                todoSpace.addView(habitLayout);
+            else
+                completedSpace.addView(habitLayout);
+            count++;
         }
 
-        int childCount = habitSpace.getChildCount();
+        int childCount = todoSpace.getChildCount();
         if (childCount > 0) {
-            View lastChild = habitSpace.getChildAt(habitSpace.getChildCount() - 1);
+            View lastChild = todoSpace.getChildAt(todoSpace.getChildCount() - 1);
+            ((LinearLayout.LayoutParams) lastChild.getLayoutParams()).bottomMargin = getResources().getDimensionPixelSize(R.dimen.margin);
+        }
+
+        childCount = completedSpace.getChildCount();
+        if (childCount > 0) {
+            View lastChild = completedSpace.getChildAt(completedSpace.getChildCount() - 1);
             ((LinearLayout.LayoutParams) lastChild.getLayoutParams()).bottomMargin = getResources().getDimensionPixelSize(R.dimen.margin);
         }
 
@@ -206,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
                         cursor.getInt(cursor.getColumnIndex("LTDays")),
                         cursor.getInt(cursor.getColumnIndex("LTDaysComplete"))
                 ));
+                totalHabitsInt++;
             } while (cursor.moveToNext());
         }
     }

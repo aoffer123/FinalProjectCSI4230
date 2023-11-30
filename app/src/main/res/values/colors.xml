@@ -4,6 +4,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background">#EEEEEE</color>
     <color name="progressColor">#00FF00</color>
+    <color name="TodoColor">#FFFFFF</color>
+    <color name="TodoColorHeader">#CCCCCC</color>
+    <color name="completedColorHeader">#93BB96</color>
+    <color name="completedColor">#B8EABB</color>
 
     <color name="mindfulness">#E8EEF5</color>
     <color name="financial">#DEF8E4</color>
