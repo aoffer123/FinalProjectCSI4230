@@ -70,6 +70,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private class completedTodayItem{
+        public int completedID;
+        public int habitID;
+        public int STDaysComplete;
+        public int LTDaysComplete;
+        public String timeStamp;
+    }
     ArrayList<HabitItem> habitList;
 
     RelativeLayout addHabit;
@@ -80,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     TextView completedHabits, totalHabits, date;
     LinearLayout todoSpace, completedSpace;
     Intent goToHabitDetails;
-    private static SQLiteDatabase db;
+    public static SQLiteDatabase db;
     private DBHelper myDBHelper;
 
     int count = 0;

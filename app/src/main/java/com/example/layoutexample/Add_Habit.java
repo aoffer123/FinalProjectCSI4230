@@ -48,7 +48,7 @@ public class Add_Habit extends AppCompatActivity
         createHabit = findViewById(R.id.createHabit);
         goToHabitDetails = new Intent(this, Habit_Description.class);
 
-        //db = MainActivity.db;
+        db = MainActivity.db;
 
 
 
@@ -77,6 +77,8 @@ public class Add_Habit extends AppCompatActivity
                 goToHabitDetails.putExtra("STReward", shortRewardStr);
                 goToHabitDetails.putExtra("LTDays", longGoalInt);
                 goToHabitDetails.putExtra("LTReward", longRewardStr);
+                insertQuery = "insert into habit (habitName, habitDesc, category, STReward, STDays, LTReward, LTDays) values ('" + habitNameStr + "','"+ habitDescStr + "','" + habitCat +"','" + shortRewardStr + "'," + shortGoalInt + ",'" + longRewardStr + "'," + longGoalInt + ")";
+                db.execSQL(insertQuery);
                 Add_Habit.this.startActivity(goToHabitDetails);
                 finish();
             }
@@ -108,26 +110,32 @@ public class Add_Habit extends AppCompatActivity
             financialBtn.setBackgroundResource(R.drawable.circle_background);
             chosenCat.setText("Category Chosen: Financial");
             photo = R.drawable.financial;
+            habitCat = "Financial";
         } else if (v.getId() == R.id.creativityBtn) {
             creativityBtn.setBackgroundResource(R.drawable.circle_creative);
             chosenCat.setText("Category Chosen: Creativity");
             photo = R.drawable.creativity;
+            habitCat = "Creativity";
         } else if (v.getId() == R.id.healthBtn) {
             healthBtn.setBackgroundResource(R.drawable.circle_health);
             chosenCat.setText("Category Chosen: Health");
             photo = R.drawable.health;
+            habitCat = "Health";
         } else if (v.getId() == R.id.mindfulBtn) {
             mindfulBtn.setBackgroundResource(R.drawable.circle_mindful);
             chosenCat.setText("Category Chosen: Mindful");
             photo = R.drawable.mindfulness;
+            habitCat = "Mindfulness";
         } else if (v.getId() == R.id.energyBtn) {
             energyBtn.setBackgroundResource(R.drawable.circle_energy);
             chosenCat.setText("Category Chosen: Energy");
             photo = R.drawable.energy;
+            habitCat = "Energy";
         } else if (v.getId() == R.id.productivityBtn) {
             productivityBtn.setBackgroundResource(R.drawable.circle_productivity);
             chosenCat.setText("Category Chosen: Productivity");
             photo = R.drawable.productivity;
+            habitCat = "Productivity";
         }
         goToHabitDetails.putExtra("catPhoto", photo);
     }

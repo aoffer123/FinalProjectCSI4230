@@ -32,6 +32,8 @@ public class Habit_Description extends AppCompatActivity {
     Intent myIntent, goalComplete;
     LinearLayout linLay1;
     ImageButton home;
+    SQLiteDatabase db;
+    String updateQuery = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class Habit_Description extends AppCompatActivity {
         habitCB = findViewById(R.id.habitCompletedCB);
         linLay1 = findViewById(R.id.linLay1);
         home = findViewById(R.id.home);
+        db = MainActivity.db;
 
         // get current date
         Date c = Calendar.getInstance().getTime();
@@ -59,6 +62,7 @@ public class Habit_Description extends AppCompatActivity {
 
         //setting intent
         myIntent = getIntent();
+        int habitID = (myIntent.getIntExtra("habitID", 0));
         String createdName = myIntent.getStringExtra("habitName");
         String createdDesc = myIntent.getStringExtra("habitDesc");
         String finalDetails = createdName + "\n" + createdDesc;
@@ -115,6 +119,7 @@ public class Habit_Description extends AppCompatActivity {
                 }
                 else if(indexShort == numberOfDays){
                     goalComplete.putExtra("goalType", "Short-Term Goal");
+                    goalComplete.putExtra("habitID", habitID);
                     Habit_Description.this.startActivity(goalComplete);
                     finish();
                 }

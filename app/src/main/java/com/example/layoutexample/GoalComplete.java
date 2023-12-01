@@ -26,11 +26,13 @@ public class GoalComplete extends AppCompatActivity {
         Intent myIntent = getIntent();
         String goalStr = myIntent.getStringExtra("goalType");
         goalTypeTV.setText(goalStr);
+        int habitID = myIntent.getIntExtra("habitID", 0);
 
         setNewGoal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 changeGoal.putExtra("goalType", goalStr);
+                changeGoal.putExtra("habitID", habitID);
                 GoalComplete.this.startActivity(changeGoal);
                 finish();
             }
