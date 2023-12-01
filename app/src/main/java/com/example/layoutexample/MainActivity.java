@@ -34,40 +34,39 @@ public class MainActivity extends AppCompatActivity {
         public String habitName;
         public String habitDesc;
         public String category;
-        public int STGoal;
+        //public int STGoal;
         public String STReward;
         public int STDays;
-        public int STDaysComplete;
-        public String LTGoal;
+        //public int STDaysComplete;
+        //public String LTGoal;
         public String LTReward;
         public int LTDays;
-        public int LTDaysComplete;
+        //public int LTDaysComplete;
 
         public HabitItem(int habitID,
                          String habitName,
                          String habitDesc,
                          String category,
-                         int STGoal,
+                         //int STGoal,
                          String STReward,
                          int STDays,
-                         int STDaysComplete,
-                         String LTGoal,
+                         //int STDaysComplete,
+                         //String LTGoal,
                          String LTReward,
-                         int LTDays,
-                         int LTDaysComplete) {
+                         int LTDays) {
 
             this.habitID = habitID;
             this.habitName = habitName;
             this.habitDesc = habitDesc;
             this.category = category;
-            this.STGoal = STGoal;
+            //this.STGoal = STGoal;
             this.STReward = STReward;
             this.STDays = STDays;
-            this.STDaysComplete = STDaysComplete;
-            this.LTGoal = LTGoal;
+            //this.STDaysComplete = STDaysComplete;
+            //this.LTGoal = LTGoal;
             this.LTReward = LTReward;
             this.LTDays = LTDays;
-            this.LTDaysComplete = LTDaysComplete;
+            //this.LTDaysComplete = LTDaysComplete;
         }
     }
 
@@ -172,14 +171,14 @@ public class MainActivity extends AppCompatActivity {
                     goToHabitDetails.putExtra("habitName", habit.habitName);
                     goToHabitDetails.putExtra("habitDesc", habit.habitDesc);
                     goToHabitDetails.putExtra("category", habit.category);
-                    goToHabitDetails.putExtra("STGoal", habit.STGoal);
+                    //goToHabitDetails.putExtra("STGoal", habit.STGoal);
                     goToHabitDetails.putExtra("STReward", habit.STReward);
                     goToHabitDetails.putExtra("STDays", habit.STDays);
-                    goToHabitDetails.putExtra("STDaysComplete", habit.STDaysComplete);
-                    goToHabitDetails.putExtra("LTGoal", habit.LTGoal);
+                    //goToHabitDetails.putExtra("STDaysComplete", habit.STDaysComplete);
+                    //goToHabitDetails.putExtra("LTGoal", habit.LTGoal);
                     goToHabitDetails.putExtra("LTReward", habit.LTReward);
                     goToHabitDetails.putExtra("LTDays", habit.LTDays);
-                    goToHabitDetails.putExtra("LTDaysComplete", habit.LTDaysComplete);
+                    //goToHabitDetails.putExtra("LTDaysComplete", habit.LTDaysComplete);
 
                     MainActivity.this.startActivity(goToHabitDetails);
                 }
@@ -226,14 +225,13 @@ public class MainActivity extends AppCompatActivity {
                         cursor.getString(cursor.getColumnIndex("habitName")),
                         cursor.getString(cursor.getColumnIndex("habitDesc")),
                         cursor.getString(cursor.getColumnIndex("category")),
-                        cursor.getInt(cursor.getColumnIndex("STGoal")),
+                        //cursor.getInt(cursor.getColumnIndex("STGoal")),
                         cursor.getString(cursor.getColumnIndex("STReward")),
                         cursor.getInt(cursor.getColumnIndex("STDays")),
-                        cursor.getInt(cursor.getColumnIndex("STDaysComplete")),
-                        cursor.getString(cursor.getColumnIndex("LTGoal")),
+                        //cursor.getInt(cursor.getColumnIndex("STDaysComplete")),
+                        //cursor.getString(cursor.getColumnIndex("LTGoal")),
                         cursor.getString(cursor.getColumnIndex("LTReward")),
-                        cursor.getInt(cursor.getColumnIndex("LTDays")),
-                        cursor.getInt(cursor.getColumnIndex("LTDaysComplete"))
+                        cursor.getInt(cursor.getColumnIndex("LTDays"))
                 ));
                 totalHabitsInt++;
             } while (cursor.moveToNext());
