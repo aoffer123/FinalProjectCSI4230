@@ -26,7 +26,7 @@ import java.util.Objects;
 public class Habit_Description extends AppCompatActivity {
     TextView date, habitDetails, shortGoal, shortReward,
             longGoal, longReward, shortProgress, longProgress;
-    int indexShort=0, indexLong=0;
+    int STcomplete, LTcomplete;
     ImageView catPhoto;
     CheckBox habitCB;
     Intent myIntent, goalComplete;
@@ -62,24 +62,27 @@ public class Habit_Description extends AppCompatActivity {
 
         //setting intent
         myIntent = getIntent();
+        int completedID = (myIntent.getIntExtra("completedID", 0));
         int habitID = (myIntent.getIntExtra("habitID", 0));
         String createdName = myIntent.getStringExtra("habitName");
         String createdDesc = myIntent.getStringExtra("habitDesc");
         String finalDetails = createdName + "\n" + createdDesc;
         habitDetails.setText(finalDetails);
         int numberOfDays = (myIntent.getIntExtra("STDays", 0));
+        STcomplete = myIntent.getIntExtra("STDaysComplete", 0);
         shortGoal.setText("Complete this habit " + numberOfDays + " days in a row");
         String createdShortReward = myIntent.getStringExtra("STReward");
         shortReward.setText(createdShortReward);
         int numberOfDaysLong = myIntent.getIntExtra("LTDays", 0);
-        int LTcomplete = myIntent.getIntExtra("LTDaysComplete", 0);
+        LTcomplete = myIntent.getIntExtra("LTDaysComplete", 0);
         longGoal.setText("Complete this habit " + numberOfDaysLong + " days in a row");
         String createdLongReward = myIntent.getStringExtra("LTReward");
         longReward.setText(createdLongReward);
-        shortProgress.setText("Progress: " + indexShort + "/" + numberOfDays);
-        longProgress.setText("Progress: " + indexLong + "/" + numberOfDaysLong);
+        shortProgress.setText("Progress: " + STcomplete + "/" + numberOfDays);
+        longProgress.setText("Progress: " + LTcomplete + "/" + numberOfDaysLong);
         int photo = myIntent.getIntExtra("catPhoto", R.drawable.financial);
         catPhoto.setImageResource(photo);
+        String lastDayComplete = myIntent.getStringExtra("timeStamp");
 
         String category = myIntent.getStringExtra("category");
         if (Objects.equals(category, "Mindfulness")){
@@ -103,22 +106,27 @@ public class Habit_Description extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(habitCB.isChecked()){
-                    indexShort += 1;
-                    indexLong += 1;
+                    STcomplete += 1;
+                    LTcomplete += 1;
                 }
                 else{
-                    indexShort -= 1;
-                    indexLong -= 1;
+                    STcomplete -= 1;
+                    LTcomplete -= 1;
                 }
-                shortProgress.setText("Progress: " + indexShort + "/" + numberOfDays);
-                longProgress.setText("Progress: " + indexLong + "/" + numberOfDaysLong);
+                shortProgress.setText("Progress: " + STcomplete + "/" + numberOfDays);
+                longProgress.setText("Progress: " + LTcomplete + "/" + numberOfDaysLong);
+                updateQuery = "update completedToday set LTDaysComplete = " + LTcomplete + " where completedID = " + completedID;
+                db.execSQL(updateQuery);
+                updateQuery = "update completedToday set STDaysComplete = " + STcomplete + " where completedID = " + completedID;
+                db.execSQL(updateQuery);
 
-                if(indexLong == numberOfDaysLong){
+
+                if(LTcomplete == numberOfDaysLong){
                     goalComplete.putExtra("goalType", "Long-Term Goal");
                     Habit_Description.this.startActivity(goalComplete);
                     finish();
                 }
-                else if(indexShort == numberOfDays){
+                else if(STcomplete == numberOfDays){
                     goalComplete.putExtra("goalType", "Short-Term Goal");
                     goalComplete.putExtra("habitID", habitID);
                     Habit_Description.this.startActivity(goalComplete);

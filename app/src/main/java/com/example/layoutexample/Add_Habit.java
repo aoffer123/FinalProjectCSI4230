@@ -16,8 +16,9 @@ public class Add_Habit extends AppCompatActivity
     Intent goToHabitDetails;
     EditText habitName, habitDesc, shortGoalInput, shortRewardInput,
             longGoalInput, longRewardInput;
-    String habitDescStr, habitCat, shortRewardStr, habitNameStr, longRewardStr;
+    String habitDescStr, shortRewardStr, habitNameStr, longRewardStr;
     int shortGoalInt, longGoalInt;
+    String habitCat = "Financial";
 
     ImageButton financialBtn, energyBtn, creativityBtn, mindfulBtn, healthBtn,
             productivityBtn, home;
@@ -47,6 +48,7 @@ public class Add_Habit extends AppCompatActivity
         chosenCat = findViewById(R.id.chosenCat);
         createHabit = findViewById(R.id.createHabit);
         goToHabitDetails = new Intent(this, Habit_Description.class);
+
 
         db = MainActivity.db;
 

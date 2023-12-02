@@ -34,24 +34,17 @@ public class MainActivity extends AppCompatActivity {
         public String habitName;
         public String habitDesc;
         public String category;
-        //public int STGoal;
         public String STReward;
         public int STDays;
-        //public int STDaysComplete;
-        //public String LTGoal;
         public String LTReward;
         public int LTDays;
-        //public int LTDaysComplete;
 
         public HabitItem(int habitID,
                          String habitName,
                          String habitDesc,
                          String category,
-                         //int STGoal,
                          String STReward,
                          int STDays,
-                         //int STDaysComplete,
-                         //String LTGoal,
                          String LTReward,
                          int LTDays) {
 
@@ -59,38 +52,14 @@ public class MainActivity extends AppCompatActivity {
             this.habitName = habitName;
             this.habitDesc = habitDesc;
             this.category = category;
-            //this.STGoal = STGoal;
             this.STReward = STReward;
             this.STDays = STDays;
-            //this.STDaysComplete = STDaysComplete;
-            //this.LTGoal = LTGoal;
             this.LTReward = LTReward;
             this.LTDays = LTDays;
-            //this.LTDaysComplete = LTDaysComplete;
         }
     }
 
-    private class completedTodayItem{
-        public int completedID;
-        public int habitID;
-        public int STDaysComplete;
-        public int LTDaysComplete;
-        public String timeStamp;
-        public completedTodayItem(int completedID,
-                         int habitID,
-                         int STDaysComplete,
-                         int LTDaysComplete,
-                         String timeStamp){
-            this.completedID = completedID;
-            this.habitID = habitID;
-            this.STDaysComplete = STDaysComplete;
-            this.LTDaysComplete = LTDaysComplete;
-            this.timeStamp = timeStamp;
-        }
-
-    }
     ArrayList<HabitItem> habitList;
-    ArrayList<completedTodayItem> completedList;
 
     RelativeLayout addHabit;
 
@@ -137,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
         createDB();
         getResult("select * from habit");
 
-        //getResultTable2("select * from completedToday");
 
         for (HabitItem habit: habitList) {
             LinearLayout habitLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.habit, todoSpace, false);
@@ -194,14 +162,10 @@ public class MainActivity extends AppCompatActivity {
                     goToHabitDetails.putExtra("habitName", habit.habitName);
                     goToHabitDetails.putExtra("habitDesc", habit.habitDesc);
                     goToHabitDetails.putExtra("category", habit.category);
-                    //goToHabitDetails.putExtra("STGoal", habit.STGoal);
                     goToHabitDetails.putExtra("STReward", habit.STReward);
                     goToHabitDetails.putExtra("STDays", habit.STDays);
-                    //goToHabitDetails.putExtra("STDaysComplete", habit.STDaysComplete);
-                    //goToHabitDetails.putExtra("LTGoal", habit.LTGoal);
                     goToHabitDetails.putExtra("LTReward", habit.LTReward);
                     goToHabitDetails.putExtra("LTDays", habit.LTDays);
-                    //goToHabitDetails.putExtra("LTDaysComplete", habit.LTDaysComplete);
                     String query = "select * from completedToday where habitID = " + habit.habitID;
                     Cursor tableResult = db.rawQuery(query, null);
                     int count = tableResult.getCount();
@@ -247,7 +211,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void getResult(String query) {
         Cursor cursor = db.rawQuery(query, null);
-        //Cursor cursor2 = db.rawQuery(query, null);
         cursor.moveToFirst();
 
         habitList = new ArrayList<>();
@@ -259,11 +222,8 @@ public class MainActivity extends AppCompatActivity {
                         cursor.getString(cursor.getColumnIndex("habitName")),
                         cursor.getString(cursor.getColumnIndex("habitDesc")),
                         cursor.getString(cursor.getColumnIndex("category")),
-                        //cursor.getInt(cursor.getColumnIndex("STGoal")),
                         cursor.getString(cursor.getColumnIndex("STReward")),
                         cursor.getInt(cursor.getColumnIndex("STDays")),
-                        //cursor.getInt(cursor.getColumnIndex("STDaysComplete")),
-                        //cursor.getString(cursor.getColumnIndex("LTGoal")),
                         cursor.getString(cursor.getColumnIndex("LTReward")),
                         cursor.getInt(cursor.getColumnIndex("LTDays"))
                 ));

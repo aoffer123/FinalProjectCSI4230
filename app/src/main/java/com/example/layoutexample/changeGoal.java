@@ -44,14 +44,14 @@ public class changeGoal extends AppCompatActivity {
                 rewardStr=newReward.getText().toString();
                 goalInt=Integer.parseInt(newGoal.getText().toString());
                 if (Objects.equals(goalStr, "Short-Term Goal")){
-//                    db.execSQL("update habit set STDays = " + goalInt + "where habitID = " + habitID);
-//                    db.execSQL("update habit set STReward = '" + rewardStr + "'where habitID = " + habitID);
-//                    db.execSQL("update completedToday set STDaysComplete = 0 where habitID = " + habitID);
+                    db.execSQL("update habit set STDays = " + goalInt + " where habitID = " + habitID);
+                    db.execSQL("update habit set STReward = '" + rewardStr + "' where habitID = " + habitID);
+                    db.execSQL("update completedToday set STDaysComplete = 0 where habitID = " + habitID);
                 }
                 else if (Objects.equals(goalStr, "Long-Term Goal")){
-//                    db.execSQL("update habit set LTDays = " + goalInt + "where habitID = " + habitID);
-//                    db.execSQL("update habit set LTReward = '" + rewardStr + "'where habitID = " + habitID);
-//                    db.execSQL("update completedToday set LTDaysComplete = 0 where habitID = " + habitID);
+                    db.execSQL("update habit set LTDays = " + goalInt + " where habitID = " + habitID);
+                    db.execSQL("update habit set LTReward = '" + rewardStr + "' where habitID = " + habitID);
+                    db.execSQL("update completedToday set LTDaysComplete = 0 where habitID = " + habitID);
                 }
 
             }
