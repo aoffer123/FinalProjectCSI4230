@@ -76,14 +76,28 @@ public class MainActivity extends AppCompatActivity {
         public int STDaysComplete;
         public int LTDaysComplete;
         public String timeStamp;
+        public completedTodayItem(int completedID,
+                         int habitID,
+                         int STDaysComplete,
+                         int LTDaysComplete,
+                         String timeStamp){
+            this.completedID = completedID;
+            this.habitID = habitID;
+            this.STDaysComplete = STDaysComplete;
+            this.LTDaysComplete = LTDaysComplete;
+            this.timeStamp = timeStamp;
+        }
+
     }
     ArrayList<HabitItem> habitList;
+    ArrayList<completedTodayItem> completedList;
 
     RelativeLayout addHabit;
 
     ProgressBar myProgressBar;
     int completedHabitsInt = 3;
     int totalHabitsInt = 0;
+    int totalCompletedInt = 0;
     TextView completedHabits, totalHabits, date;
     LinearLayout todoSpace, completedSpace;
     Intent goToHabitDetails;
@@ -122,6 +136,8 @@ public class MainActivity extends AppCompatActivity {
 
         createDB();
         getResult("select * from habit");
+
+        //getResultTable2("select * from completedToday");
 
         for (HabitItem habit: habitList) {
             LinearLayout habitLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.habit, todoSpace, false);
@@ -186,7 +202,18 @@ public class MainActivity extends AppCompatActivity {
                     goToHabitDetails.putExtra("LTReward", habit.LTReward);
                     goToHabitDetails.putExtra("LTDays", habit.LTDays);
                     //goToHabitDetails.putExtra("LTDaysComplete", habit.LTDaysComplete);
-
+                    String query = "select * from completedToday where habitID = " + habit.habitID;
+                    Cursor tableResult = db.rawQuery(query, null);
+                    int count = tableResult.getCount();
+                    tableResult.moveToFirst();
+                    if (count >= 1){
+                        do{
+                            goToHabitDetails.putExtra("completedID", tableResult.getInt(0));
+                            goToHabitDetails.putExtra("STDaysComplete", tableResult.getInt(2));
+                            goToHabitDetails.putExtra("LTDaysComplete", tableResult.getInt(3));
+                            goToHabitDetails.putExtra("timeStamp", tableResult.getString(4));
+                        } while(tableResult.moveToNext());
+                    }
                     MainActivity.this.startActivity(goToHabitDetails);
                 }
             });

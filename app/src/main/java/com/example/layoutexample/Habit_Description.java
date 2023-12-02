@@ -72,6 +72,7 @@ public class Habit_Description extends AppCompatActivity {
         String createdShortReward = myIntent.getStringExtra("STReward");
         shortReward.setText(createdShortReward);
         int numberOfDaysLong = myIntent.getIntExtra("LTDays", 0);
+        int LTcomplete = myIntent.getIntExtra("LTDaysComplete", 0);
         longGoal.setText("Complete this habit " + numberOfDaysLong + " days in a row");
         String createdLongReward = myIntent.getStringExtra("LTReward");
         longReward.setText(createdLongReward);
