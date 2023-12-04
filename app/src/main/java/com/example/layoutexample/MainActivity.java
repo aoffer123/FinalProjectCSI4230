@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
         completedHabitsInt = 0;
         totalHabitsInt = 0;
-        Log.d("abcde", Integer.toString(dataList.size()));
+
         for (Data data : dataList) {
             totalHabitsInt++;
             LinearLayout habitLayout;
