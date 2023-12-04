@@ -60,6 +60,11 @@ public class changeGoal extends AppCompatActivity {
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (Objects.equals(goalStr, "Short-Term Goal")) {
+                    db.execSQL("update completedToday set STDaysComplete = 0 where habitID = " + habitID);
+                } else if (Objects.equals(goalStr, "Long-Term Goal")){
+                    db.execSQL("update completedToday set LTDaysComplete = 0 where habitID = " + habitID);
+                }
                 finish();
             }
         });

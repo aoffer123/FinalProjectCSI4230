@@ -26,10 +26,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    private class HabitItem {
+    private class Data {
         public int habitID;
         public String habitName;
         public String habitDesc;
@@ -38,15 +39,21 @@ public class MainActivity extends AppCompatActivity {
         public int STDays;
         public String LTReward;
         public int LTDays;
+        int STDaysComplete;
+        int LTDaysComplete;
+        String timeStamp;
 
-        public HabitItem(int habitID,
-                         String habitName,
-                         String habitDesc,
-                         String category,
-                         String STReward,
-                         int STDays,
-                         String LTReward,
-                         int LTDays) {
+        public Data(int habitID,
+                    String habitName,
+                    String habitDesc,
+                    String category,
+                    String STReward,
+                    int STDays,
+                    String LTReward,
+                    int LTDays,
+                    int STDaysComplete,
+                    int LTDaysComplete,
+                    String timeStamp) {
 
             this.habitID = habitID;
             this.habitName = habitName;
@@ -56,23 +63,24 @@ public class MainActivity extends AppCompatActivity {
             this.STDays = STDays;
             this.LTReward = LTReward;
             this.LTDays = LTDays;
+            this.STDaysComplete = STDaysComplete;
+            this.LTDaysComplete = LTDaysComplete;
+            this.timeStamp = timeStamp;
         }
     }
 
-    ArrayList<HabitItem> habitList;
+    ArrayList<Data> dataList;
 
     RelativeLayout addHabit;
 
     ProgressBar myProgressBar;
     int completedHabitsInt;
-    int totalHabitsInt = 0;
+    int totalHabitsInt;
     TextView completedHabits, totalHabits, date;
     LinearLayout todoSpace, completedSpace;
     Intent goToHabitDetails;
     public static SQLiteDatabase db;
     private DBHelper myDBHelper;
-
-    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,37 +94,60 @@ public class MainActivity extends AppCompatActivity {
         todoSpace = findViewById(R.id.todo_space);
         completedSpace = findViewById(R.id.completed_space);
         goToHabitDetails = new Intent(this, Habit_Description.class);
+        date = findViewById(R.id.date);
+
+        addHabit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.startActivity(new Intent(MainActivity.this, Add_Habit.class));
+            }
+        });
 
         createDB();
-        getResult("select * from habit");
+    }
 
-        getCompletedInt();
-        myProgressBar.setProgress(completedHabitsInt);
-        completedHabits.setText(Integer.toString(completedHabitsInt));
-        totalHabits.setText(Integer.toString(totalHabitsInt));
+    @Override
+    public void onResume() {
 
-        date = findViewById(R.id.date);
+        super.onResume();
+        getResults();
 
         // get current date
         Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("MMM-dd-yyyy", Locale.getDefault());
-        String formattedDate = df.format(c);
-        date.setText(formattedDate);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+        String dateToday = df.format(c);
+        date.setText(dateToday);
 
-        createDB();
-        getResult("select * from habit");
+        if (todoSpace != null) {
+            todoSpace.removeAllViews();
+        }
+        if (completedSpace != null) {
+            completedSpace.removeAllViews();
+        }
 
+        completedHabitsInt = 0;
+        totalHabitsInt = 0;
+        Log.d("abcde", Integer.toString(dataList.size()));
+        for (Data data : dataList) {
+            totalHabitsInt++;
+            LinearLayout habitLayout;
+            if (Objects.equals(dateToday, data.timeStamp)) {
+                habitLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.habit, completedSpace, false);
+                completedSpace.addView(habitLayout);
+                completedHabitsInt++;
+            } else {
+                habitLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.habit, todoSpace, false);
+                todoSpace.addView(habitLayout);
+            }
 
-        for (HabitItem habit: habitList) {
-            LinearLayout habitLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.habit, todoSpace, false);
             ImageView img = habitLayout.findViewById(R.id.image);
-            TextView title = habitLayout.findViewById(R.id.title);
             TextView category = habitLayout.findViewById(R.id.category);
             GradientDrawable backgroundDrawable = (GradientDrawable) habitLayout.findViewById(R.id.image_background).getBackground();
 
-            title.setText(habit.habitName);
+            TextView title = habitLayout.findViewById(R.id.title);
+            title.setText(data.habitName);
 
-            switch (habit.category) {
+            switch (data.category) {
                 case "Mindfulness":
                     category.setText("Mindfulness");
                     img.setImageResource(R.drawable.mindfulness);
@@ -158,36 +189,27 @@ public class MainActivity extends AppCompatActivity {
             habitLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    goToHabitDetails.putExtra("habitID", habit.habitID);
-                    goToHabitDetails.putExtra("habitName", habit.habitName);
-                    goToHabitDetails.putExtra("habitDesc", habit.habitDesc);
-                    goToHabitDetails.putExtra("category", habit.category);
-                    goToHabitDetails.putExtra("STReward", habit.STReward);
-                    goToHabitDetails.putExtra("STDays", habit.STDays);
-                    goToHabitDetails.putExtra("LTReward", habit.LTReward);
-                    goToHabitDetails.putExtra("LTDays", habit.LTDays);
-                    String query = "select * from completedToday where habitID = " + habit.habitID;
-                    Cursor tableResult = db.rawQuery(query, null);
-                    int count = tableResult.getCount();
-                    tableResult.moveToFirst();
-                    if (count >= 1){
-                        do{
-                            goToHabitDetails.putExtra("completedID", tableResult.getInt(0));
-                            goToHabitDetails.putExtra("STDaysComplete", tableResult.getInt(2));
-                            goToHabitDetails.putExtra("LTDaysComplete", tableResult.getInt(3));
-                            goToHabitDetails.putExtra("timeStamp", tableResult.getString(4));
-                        } while(tableResult.moveToNext());
-                    }
+                    goToHabitDetails.putExtra("habitID", data.habitID);
+                    goToHabitDetails.putExtra("habitName", data.habitName);
+                    goToHabitDetails.putExtra("habitDesc", data.habitDesc);
+                    goToHabitDetails.putExtra("category", data.category);
+                    goToHabitDetails.putExtra("STReward", data.STReward);
+                    goToHabitDetails.putExtra("STDays", data.STDays);
+                    goToHabitDetails.putExtra("LTReward", data.LTReward);
+                    goToHabitDetails.putExtra("LTDays", data.LTDays);
+                    goToHabitDetails.putExtra("STDaysComplete", data.STDaysComplete);
+                    goToHabitDetails.putExtra("LTDaysComplete", data.LTDaysComplete);
+                    goToHabitDetails.putExtra("timeStamp", data.timeStamp);
+
                     MainActivity.this.startActivity(goToHabitDetails);
                 }
             });
-
-            if (count % 2 == 0)
-                todoSpace.addView(habitLayout);
-            else
-                completedSpace.addView(habitLayout);
-            count++;
         }
+
+        myProgressBar.setProgress(completedHabitsInt);
+        myProgressBar.setMax(totalHabitsInt);
+        completedHabits.setText(Integer.toString(completedHabitsInt));
+        totalHabits.setText(Integer.toString(totalHabitsInt));
 
         int childCount = todoSpace.getChildCount();
         if (childCount > 0) {
@@ -200,24 +222,17 @@ public class MainActivity extends AppCompatActivity {
             View lastChild = completedSpace.getChildAt(completedSpace.getChildCount() - 1);
             ((LinearLayout.LayoutParams) lastChild.getLayoutParams()).bottomMargin = getResources().getDimensionPixelSize(R.dimen.margin);
         }
-
-        addHabit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivity.this.startActivity(new Intent(MainActivity.this, Add_Habit.class));
-            }
-        });
     }
 
-    public void getResult(String query) {
-        Cursor cursor = db.rawQuery(query, null);
+    public void getResults() {
+        Cursor cursor = db.rawQuery("select * from habit join completedToday on habit.habitID = completedToday.habitID", null);
         cursor.moveToFirst();
 
-        habitList = new ArrayList<>();
+        dataList = new ArrayList<>();
 
-        if (cursor.getCount() > 1) {
+        if (cursor.getCount() > 0) {
             do {
-                habitList.add(new HabitItem(
+                dataList.add(new Data(
                         cursor.getInt(0),
                         cursor.getString(1),
                         cursor.getString(2),
@@ -225,25 +240,12 @@ public class MainActivity extends AppCompatActivity {
                         cursor.getString(4),
                         cursor.getInt(5),
                         cursor.getString(6),
-                        cursor.getInt(7)
+                        cursor.getInt(7),
+                        cursor.getInt(9),
+                        cursor.getInt(10),
+                        cursor.getString(11)
                 ));
-                totalHabitsInt++;
             } while (cursor.moveToNext());
-        }
-    }
-
-    public void getCompletedInt(){
-        Date date2 = Calendar.getInstance().getTime();
-        SimpleDateFormat today = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
-        String dateToday = today.format(date2);
-        String query = "select count([timeStamp(YYYY/MM/DD)]) from completedToday where [timeStamp(YYYY/MM/DD)] = '" + dateToday + "'";
-        Cursor tableResult = db.rawQuery(query, null);
-        int count = tableResult.getCount();
-        tableResult.moveToFirst();
-        if (count >= 1){
-            do{
-                completedHabitsInt = tableResult.getInt(0);
-            } while(tableResult.moveToNext());
         }
     }
 

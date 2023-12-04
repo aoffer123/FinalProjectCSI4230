@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,7 +63,6 @@ public class Habit_Description extends AppCompatActivity {
 
         //setting intent
         myIntent = getIntent();
-        int completedID = (myIntent.getIntExtra("completedID", 0));
         int habitID = (myIntent.getIntExtra("habitID", 0));
         String createdName = myIntent.getStringExtra("habitName");
         String createdDesc = myIntent.getStringExtra("habitDesc");
@@ -117,27 +117,31 @@ public class Habit_Description extends AppCompatActivity {
                 LTcomplete += 1;
                 shortProgress.setText("Progress: " + STcomplete + "/" + numberOfDays);
                 longProgress.setText("Progress: " + LTcomplete + "/" + numberOfDaysLong);
-                updateQuery = "update completedToday set LTDaysComplete = " + LTcomplete + " where completedID = " + completedID;
+                updateQuery = "update completedToday set LTDaysComplete = " + LTcomplete + " where habitID = " + habitID;
                 db.execSQL(updateQuery);
-                updateQuery = "update completedToday set STDaysComplete = " + STcomplete + " where completedID = " + completedID;
+                updateQuery = "update completedToday set STDaysComplete = " + STcomplete + " where habitID = " + habitID;
                 db.execSQL(updateQuery);
-                updateQuery = "update completedToday set [timeStamp(YYYY/MM/DD)] = '" + dateToday + "' where completedID = " + completedID;
+                updateQuery = "update completedToday set [timeStamp(YYYY/MM/DD)] = '" + dateToday + "' where habitID = " + habitID;
                 db.execSQL(updateQuery);
                 habitCB.setChecked(true);
                 habitCB.setEnabled(false);
 
-
-                if(LTcomplete == numberOfDaysLong){
-                    goalComplete.putExtra("goalType", "Long-Term Goal");
-                    Habit_Description.this.startActivity(goalComplete);
-                    finish();
-                }
-                else if(STcomplete == numberOfDays){
+                Boolean isFinished = false;
+                if(STcomplete == numberOfDays){
                     goalComplete.putExtra("goalType", "Short-Term Goal");
                     goalComplete.putExtra("habitID", habitID);
                     Habit_Description.this.startActivity(goalComplete);
-                    finish();
+                    isFinished = true;
                 }
+                if(LTcomplete == numberOfDaysLong){
+                    goalComplete.putExtra("goalType", "Long-Term Goal");
+                    goalComplete.putExtra("habitID", habitID);
+                    Habit_Description.this.startActivity(goalComplete);
+                    isFinished = true;
+                }
+
+                if (isFinished)
+                    finish();
             }
         });
 

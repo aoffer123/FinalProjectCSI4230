@@ -108,7 +108,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <LinearLayout
-                android:id="@+id/todo_space"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/TodoColor"
@@ -120,9 +119,14 @@
                     android:gravity="center"
                     android:background="@color/TodoColorHeader"
                     android:text="To Do"/>
+                <LinearLayout
+                    android:id="@+id/todo_space"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/completed_space"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/completedColor"
@@ -134,6 +138,12 @@
                     android:gravity="center"
                     android:background="@color/completedColorHeader"
                     android:text="Completed"/>
+                <LinearLayout
+                    android:id="@+id/completed_space"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
