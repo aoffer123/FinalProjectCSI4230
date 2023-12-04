@@ -54,9 +54,9 @@ public class Habit_Description extends AppCompatActivity {
         db = MainActivity.db;
 
         // get current date
-        Date c = Calendar.getInstance().getTime();
+        Date date1 = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("MMM-dd-yyyy", Locale.getDefault());
-        String formattedDate = df.format(c);
+        String formattedDate = df.format(date1);
         date.setText(formattedDate);
 
 
@@ -83,6 +83,14 @@ public class Habit_Description extends AppCompatActivity {
         int photo = myIntent.getIntExtra("catPhoto", R.drawable.financial);
         catPhoto.setImageResource(photo);
         String lastDayComplete = myIntent.getStringExtra("timeStamp");
+        Date date2 = Calendar.getInstance().getTime();
+        SimpleDateFormat today = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+        String dateToday = today.format(date2);
+        if (Objects.equals(lastDayComplete, dateToday)){
+            habitCB.setChecked(true);
+            habitCB.setEnabled(false);
+        }
+
 
         String category = myIntent.getStringExtra("category");
         if (Objects.equals(category, "Mindfulness")){
@@ -105,20 +113,18 @@ public class Habit_Description extends AppCompatActivity {
         habitCB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(habitCB.isChecked()){
-                    STcomplete += 1;
-                    LTcomplete += 1;
-                }
-                else{
-                    STcomplete -= 1;
-                    LTcomplete -= 1;
-                }
+                STcomplete += 1;
+                LTcomplete += 1;
                 shortProgress.setText("Progress: " + STcomplete + "/" + numberOfDays);
                 longProgress.setText("Progress: " + LTcomplete + "/" + numberOfDaysLong);
                 updateQuery = "update completedToday set LTDaysComplete = " + LTcomplete + " where completedID = " + completedID;
                 db.execSQL(updateQuery);
                 updateQuery = "update completedToday set STDaysComplete = " + STcomplete + " where completedID = " + completedID;
                 db.execSQL(updateQuery);
+                updateQuery = "update completedToday set [timeStamp(YYYY/MM/DD)] = '" + dateToday + "' where completedID = " + completedID;
+                db.execSQL(updateQuery);
+                habitCB.setChecked(true);
+                habitCB.setEnabled(false);
 
 
                 if(LTcomplete == numberOfDaysLong){

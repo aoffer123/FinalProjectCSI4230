@@ -64,9 +64,8 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout addHabit;
 
     ProgressBar myProgressBar;
-    int completedHabitsInt = 3;
+    int completedHabitsInt;
     int totalHabitsInt = 0;
-    int totalCompletedInt = 0;
     TextView completedHabits, totalHabits, date;
     LinearLayout todoSpace, completedSpace;
     Intent goToHabitDetails;
@@ -91,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         createDB();
         getResult("select * from habit");
 
+        getCompletedInt();
         myProgressBar.setProgress(completedHabitsInt);
         completedHabits.setText(Integer.toString(completedHabitsInt));
         totalHabits.setText(Integer.toString(totalHabitsInt));
@@ -218,17 +218,32 @@ public class MainActivity extends AppCompatActivity {
         if (cursor.getCount() > 1) {
             do {
                 habitList.add(new HabitItem(
-                        cursor.getInt(cursor.getColumnIndex("habitID")),
-                        cursor.getString(cursor.getColumnIndex("habitName")),
-                        cursor.getString(cursor.getColumnIndex("habitDesc")),
-                        cursor.getString(cursor.getColumnIndex("category")),
-                        cursor.getString(cursor.getColumnIndex("STReward")),
-                        cursor.getInt(cursor.getColumnIndex("STDays")),
-                        cursor.getString(cursor.getColumnIndex("LTReward")),
-                        cursor.getInt(cursor.getColumnIndex("LTDays"))
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getInt(5),
+                        cursor.getString(6),
+                        cursor.getInt(7)
                 ));
                 totalHabitsInt++;
             } while (cursor.moveToNext());
+        }
+    }
+
+    public void getCompletedInt(){
+        Date date2 = Calendar.getInstance().getTime();
+        SimpleDateFormat today = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+        String dateToday = today.format(date2);
+        String query = "select count([timeStamp(YYYY/MM/DD)]) from completedToday where [timeStamp(YYYY/MM/DD)] = '" + dateToday + "'";
+        Cursor tableResult = db.rawQuery(query, null);
+        int count = tableResult.getCount();
+        tableResult.moveToFirst();
+        if (count >= 1){
+            do{
+                completedHabitsInt = tableResult.getInt(0);
+            } while(tableResult.moveToNext());
         }
     }
 

@@ -3,6 +3,7 @@ package com.example.layoutexample;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -79,8 +80,18 @@ public class Add_Habit extends AppCompatActivity
                 goToHabitDetails.putExtra("STReward", shortRewardStr);
                 goToHabitDetails.putExtra("LTDays", longGoalInt);
                 goToHabitDetails.putExtra("LTReward", longRewardStr);
-                insertQuery = "insert into habit (habitName, habitDesc, category, STReward, STDays, LTReward, LTDays) values ('" + habitNameStr + "','"+ habitDescStr + "','" + habitCat +"','" + shortRewardStr + "'," + shortGoalInt + ",'" + longRewardStr + "'," + longGoalInt + ")";
-                db.execSQL(insertQuery);
+                Cursor maxID = db.rawQuery("select max(habitID) from habit", null);
+                int count = maxID.getCount();
+                maxID.moveToFirst();
+                if (count >= 1){
+                    do{
+                        int newHabitID = (maxID.getInt(0) + 1);
+                        insertQuery = "insert into habit (habitID, habitName, habitDesc, category, STReward, STDays, LTReward, LTDays) values (" + newHabitID + ",'" + habitNameStr + "','"+ habitDescStr + "','" + habitCat +"','" + shortRewardStr + "'," + shortGoalInt + ",'" + longRewardStr + "'," + longGoalInt + ")";
+                        db.execSQL(insertQuery);
+                        insertQuery = "insert into completedToday (habitID, STDaysComplete, STDaysComplete, [timeStamp(YYYY/MM/DD)]) values (" + newHabitID + ", 0, 0, 'null')";
+                        db.execSQL(insertQuery);
+                    } while (maxID.moveToNext());
+                }
                 Add_Habit.this.startActivity(goToHabitDetails);
                 finish();
             }

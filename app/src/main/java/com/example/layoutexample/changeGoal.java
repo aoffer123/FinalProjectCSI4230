@@ -53,6 +53,7 @@ public class changeGoal extends AppCompatActivity {
                     db.execSQL("update habit set LTReward = '" + rewardStr + "' where habitID = " + habitID);
                     db.execSQL("update completedToday set LTDaysComplete = 0 where habitID = " + habitID);
                 }
+                finish();
 
             }
         });
