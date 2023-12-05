@@ -90,6 +90,7 @@ public class Add_Habit extends AppCompatActivity
                         db.execSQL(insertQuery);
                         insertQuery = "insert into completedToday (habitID, STDaysComplete, STDaysComplete, [timeStamp(YYYY/MM/DD)]) values (" + newHabitID + ", 0, 0, 'null')";
                         db.execSQL(insertQuery);
+                        goToHabitDetails.putExtra("habitID", newHabitID);
                     } while (maxID.moveToNext());
                 }
                 Add_Habit.this.startActivity(goToHabitDetails);
