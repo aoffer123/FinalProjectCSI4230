@@ -86,6 +86,22 @@ public class Habit_Description extends AppCompatActivity {
         Date date2 = Calendar.getInstance().getTime();
         SimpleDateFormat today = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
         String dateToday = today.format(date2);
+
+        Date date3 = new Date(System.currentTimeMillis()-24*60*60*1000*2);
+        SimpleDateFormat yesterday = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+        String dateYesterday = yesterday.format(date3);
+
+        if ((!Objects.equals(lastDayComplete, dateToday)) & (!Objects.equals(lastDayComplete, dateYesterday))){
+            STcomplete = 0;
+            LTcomplete = 0;
+            updateQuery = "update completedToday set LTDaysComplete = 0 where habitID = " + habitID;
+            db.execSQL(updateQuery);
+            updateQuery = "update completedToday set STDaysComplete = 0 where habitID = " + habitID;
+            db.execSQL(updateQuery);
+            shortProgress.setText("Progress: " + STcomplete + "/" + numberOfDays);
+            longProgress.setText("Progress: " + LTcomplete + "/" + numberOfDaysLong);
+        }
+
         if (Objects.equals(lastDayComplete, dateToday)){
             habitCB.setChecked(true);
             habitCB.setEnabled(false);
