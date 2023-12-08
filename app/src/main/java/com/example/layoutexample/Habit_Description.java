@@ -70,6 +70,7 @@ public class Habit_Description extends AppCompatActivity {
         habitDetails.setText(finalDetails);
         int numberOfDays = (myIntent.getIntExtra("STDays", 0));
         STcomplete = myIntent.getIntExtra("STDaysComplete", 0);
+        Log.d("abcde", Integer.toString(STcomplete));
         shortGoal.setText("Complete this habit " + numberOfDays + " days in a row");
         String createdShortReward = myIntent.getStringExtra("STReward");
         shortReward.setText(createdShortReward);
@@ -90,17 +91,6 @@ public class Habit_Description extends AppCompatActivity {
         Date date3 = new Date(System.currentTimeMillis()-24*60*60*1000*2);
         SimpleDateFormat yesterday = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
         String dateYesterday = yesterday.format(date3);
-
-        if ((!Objects.equals(lastDayComplete, dateToday)) & (!Objects.equals(lastDayComplete, dateYesterday))){
-            STcomplete = 0;
-            LTcomplete = 0;
-            updateQuery = "update completedToday set LTDaysComplete = 0 where habitID = " + habitID;
-            db.execSQL(updateQuery);
-            updateQuery = "update completedToday set STDaysComplete = 0 where habitID = " + habitID;
-            db.execSQL(updateQuery);
-            shortProgress.setText("Progress: " + STcomplete + "/" + numberOfDays);
-            longProgress.setText("Progress: " + LTcomplete + "/" + numberOfDaysLong);
-        }
 
         if (Objects.equals(lastDayComplete, dateToday)){
             habitCB.setChecked(true);
